@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sst-h1",
+    "subject": "SST",
+    "chapter": "Nationalism in Europe",
+    "style": "Easy Hinglish, maps, timelines and tricks",
+    "status": "pending"
+  },
+  {
+    "id": "sci-light",
+    "subject": "Science",
+    "chapter": "Light - Reflection and Refraction",
+    "style": "Detailed NCERT notes, diagrams and numericals",
+    "status": "pending"
+  },
+  {
+    "id": "math-real",
+    "subject": "Maths",
+    "chapter": "Real Numbers",
+    "style": "Step by step explanations and solved examples",
+    "status": "pending"
+  }
+]
