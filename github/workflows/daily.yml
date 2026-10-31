@@ -1,0 +1,44 @@
+name: Daily Auto Notes
+
+on:
+  schedule:
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate Notes
+        run: python auto_bot.py
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Save Generated Notes
+        run: |
+          git config user.name "cbse-bot"
+          git config user.email "cbse-bot@users.noreply.github.com"
+          git add notes/ chapters.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Automatically generate chapter notes"
+            git push origin main
+          else
+            echo "No changes to save"
+          fi
